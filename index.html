@@ -190,22 +190,36 @@
         }
 
         .location-media {
-            width: 100%;
-            border-radius: 15px;
+            width: 150px;
+            height: 150px;
+            margin: 0 auto 18px;
+            position: relative;
+            border-radius: 999px;
             overflow: hidden;
-            border: 1px solid rgba(246, 242, 234, 0.14);
+            border: 1px solid rgba(246, 242, 234, 0.18);
+            box-shadow: 0 18px 40px rgba(0, 0, 0, 0.35);
             background:
-                radial-gradient(500px 300px at 20% 30%, rgba(47, 125, 78, 0.55), transparent 60%),
-                radial-gradient(500px 300px at 80% 50%, rgba(176, 137, 91, 0.40), transparent 60%),
-                linear-gradient(180deg, rgba(6, 20, 15, 0.50), rgba(6, 20, 15, 0.78));
-            margin-bottom: 20px;
+                radial-gradient(70px 60px at 30% 35%, rgba(246, 242, 234, 0.12), transparent 70%),
+                radial-gradient(90px 80px at 70% 60%, rgba(47, 125, 78, 0.35), transparent 72%),
+                linear-gradient(180deg, rgba(6, 20, 15, 0.45), rgba(6, 20, 15, 0.82));
         }
 
         .location-image {
             width: 100%;
-            height: 380px;
+            height: 100%;
             object-fit: cover;
             display: block;
+            transform: scale(1.05);
+            filter: contrast(1.05) saturate(1.05);
+        }
+
+        .location-media::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 999px;
+            box-shadow: inset 0 0 0 1px rgba(246, 242, 234, 0.12);
+            pointer-events: none;
         }
 
         .specs {
@@ -433,8 +447,9 @@
                 height: 300px;
             }
 
-            .location-image {
-                height: 300px;
+            .location-media {
+                width: 140px;
+                height: 140px;
             }
             
             .whatsapp-float {
@@ -491,12 +506,8 @@
                 <h2 class="cabana-title" id="cabanaTitle">Cabaña A22</h2>
 
                 <div class="location-media">
-                    <img id="locationImage" class="location-image" src="" alt="Ubicación de la cabaña" />
+                    <img id="locationImage" class="location-image" src="https://images.unsplash.com/photo-1526778548025-fa2f459cd5c1?auto=format&fit=crop&w=300&q=80" alt="Miniatura de mapa" />
                 </div>
-
-                <a id="directionsBtn" class="directions-btn" href="#" target="_blank" rel="noopener">
-                    ¿Cómo llegar?
-                </a>
 
                 <div class="specs" aria-label="Ficha técnica">
                     <div class="spec">
@@ -512,6 +523,10 @@
                 <div class="rule-alert" role="note">
                     IMPORTANTE: La basura debe tirarse en el cesto exterior. Evite multas de $20.000.
                 </div>
+
+                <a id="directionsBtn" class="directions-btn" href="#" target="_blank" rel="noopener">
+                    ¿Cómo llegar?
+                </a>
 
                 <div class="instructions">
                     <h3>Instrucciones de llegada</h3>
@@ -603,8 +618,6 @@
             const data = CABANA_DATA[cabanaName] || { capacity: 'A completar', rooms: 'A completar', mapsUrl: '#' };
             specCapacity.textContent = data.capacity;
             specRooms.textContent = data.rooms;
-            locationImage.src = makeOfflineLocationPlaceholder(cabanaName);
-            locationImage.alt = `Ubicación de ${cabanaName}`;
 
             directionsBtn.href = data.mapsUrl;
             
