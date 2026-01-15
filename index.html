@@ -603,6 +603,9 @@
             cabanasGrid.style.display = 'none';
             detailView.classList.add('active');
             
+            // Agregar entrada al historial del navegador
+            history.pushState({ cabana: cabanaName }, `Cabaña ${cabanaName}`, `?cabana=${cabanaName}`);
+            
             window.scrollTo({
                 top: 0,
                 behavior: 'smooth'
@@ -613,6 +616,9 @@
             detailView.classList.remove('active');
             cabanasGrid.style.display = 'grid';
             
+            // Usar history.back() para navegación natural del navegador
+            history.back();
+            
             setTimeout(() => {
                 window.scrollTo({
                     top: 0,
@@ -620,6 +626,15 @@
                 });
             }, 100);
         }
+
+        // Escuchar evento popstate (gesto trackpad, botón atrás del navegador)
+        window.addEventListener('popstate', function(event) {
+            if (event.state && event.state.cabana) {
+                // Si venimos de una ficha de cabaña, volver al grid
+                detailView.classList.remove('active');
+                cabanasGrid.style.display = 'grid';
+            }
+        });
 
         document.addEventListener('DOMContentLoaded', function() {
             cabanaBtns.forEach((btn, index) => {
