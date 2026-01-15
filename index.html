@@ -558,14 +558,14 @@
         const cabanaBtns = document.querySelectorAll('.cabana-btn');
 
         const CABANA_DATA = {
-            'A22': { capacity: '8 personas', rooms: 'A completar', mapsUrl: 'https://maps.app.goo.gl/UcepXrAt5ijMahdL8', coords: '-32.554374,-60.847760' },
-            'Casa del Árbol': { capacity: '2 personas', rooms: 'A completar', mapsUrl: 'https://maps.app.goo.gl/8y1WLujMqPZsrYUFA', coords: '-32.560000,-60.850000' },
-            'CA12': { capacity: '6 personas', rooms: 'A completar', mapsUrl: 'https://maps.app.goo.gl/jRtpMmVHKVZXFxHS6', coords: '-32.560000,-60.850000' },
-            'B48': { capacity: '4 personas', rooms: 'A completar', mapsUrl: 'https://maps.app.goo.gl/za3wj2brHbsE6QCXA', coords: '-32.560000,-60.850000' },
-            'B56': { capacity: '8 personas', rooms: 'A completar', mapsUrl: 'https://maps.app.goo.gl/L9ZpRCGjDM3fofSYA', coords: '-32.560000,-60.850000' },
-            'CT21': { capacity: '8 personas', rooms: 'A completar', mapsUrl: 'https://maps.app.goo.gl/eQNdxXhjkHzky4KW6', coords: '-32.560000,-60.850000' },
-            'CT22A': { capacity: '4 personas', rooms: 'A completar', mapsUrl: 'https://maps.app.goo.gl/vBr6snBET9CjW8hU8', coords: '-32.560000,-60.850000' },
-            'Pileta': { capacity: 'A completar', rooms: 'A completar', mapsUrl: 'https://maps.app.goo.gl/wq8vDzVLTnJA4uN97', coords: '-32.560000,-60.850000' }
+            'A22': { capacity: '8 personas', rooms: 'A completar', mapsUrl: 'https://maps.app.goo.gl/UcepXrAt5ijMahdL8', coords: 'A22, Campo Timbó, Santa Fe, Argentina' },
+            'Casa del Árbol': { capacity: '2 personas', rooms: 'A completar', mapsUrl: 'https://maps.app.goo.gl/8y1WLujMqPZsrYUFA', coords: 'Casa del Árbol, Campo Timbó, Santa Fe, Argentina' },
+            'CA12': { capacity: '6 personas', rooms: 'A completar', mapsUrl: 'https://maps.app.goo.gl/jRtpMmVHKVZXFxHS6', coords: 'CA12, Campo Timbó, Santa Fe, Argentina' },
+            'B48': { capacity: '4 personas', rooms: 'A completar', mapsUrl: 'https://maps.app.goo.gl/za3wj2brHbsE6QCXA', coords: 'B48, Campo Timbó, Santa Fe, Argentina' },
+            'B56': { capacity: '8 personas', rooms: 'A completar', mapsUrl: 'https://maps.app.goo.gl/L9ZpRCGjDM3fofSYA', coords: 'B56, Campo Timbó, Santa Fe, Argentina' },
+            'CT21': { capacity: '8 personas', rooms: 'A completar', mapsUrl: 'https://maps.app.goo.gl/eQNdxXhjkHzky4KW6', coords: 'CT21, Campo Timbó, Santa Fe, Argentina' },
+            'CT22A': { capacity: '4 personas', rooms: 'A completar', mapsUrl: 'https://maps.app.goo.gl/vBr6snBET9CjW8hU8', coords: 'CT19A, Campo Timbó, Santa Fe, Argentina' },
+            'Pileta': { capacity: 'A completar', rooms: 'A completar', mapsUrl: 'https://maps.app.goo.gl/wq8vDzVLTnJA4uN97', coords: 'Pileta, Campo Timbó, Santa Fe, Argentina' }
         };
 
         cabanaBtns.forEach(btn => {
@@ -578,12 +578,13 @@
         function showCabanaDetail(cabanaName) {
             cabanaTitle.textContent = `Cabaña ${cabanaName}`;
 
-            const data = CABANA_DATA[cabanaName] || { capacity: 'A completar', rooms: 'A completar', mapsUrl: '#', coords: '-32.560000,-60.850000' };
+            const data = CABANA_DATA[cabanaName] || { capacity: 'A completar', rooms: 'A completar', mapsUrl: '#', coords: 'Campo Timbó, Santa Fe, Argentina' };
             specCapacity.textContent = data.capacity;
             specRooms.textContent = data.rooms;
 
             if (data.coords) {
-                mapIframe.src = `https://maps.google.com/maps?q=${data.coords}&z=18&output=embed&iwloc=near`;
+                // Usar formato de dirección en lugar de coordenadas puras
+                mapIframe.src = `https://maps.google.com/maps?q=${encodeURIComponent(data.coords)}&z=18&output=embed`;
             }
 
             directionsBtn.href = data.mapsUrl;
