@@ -583,7 +583,7 @@
             specRooms.textContent = data.rooms;
 
             if (data.coords) {
-                mapIframe.src = `https://maps.google.com/maps?q=${data.coords}&t=&z=15&ie=UTF8&iwloc=&output=embed`;
+                mapIframe.src = `https://maps.google.com/maps?q=${data.coords}&z=18&output=embed&iwloc=near`;
             }
 
             directionsBtn.href = data.mapsUrl;
