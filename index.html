@@ -547,7 +547,7 @@
                     </ol>
                 </div>
 
-                <button class="back-btn" onclick="backToGrid()">Volver al inicio</button>
+                <button class="back-btn" onclick="closeCabana()">Volver al inicio</button>
             </section>
         </main>
     </div>
@@ -603,8 +603,8 @@
             cabanasGrid.style.display = 'none';
             detailView.classList.add('active');
             
-            // Agregar entrada al historial del navegador
-            history.pushState({ cabana: cabanaName }, `Cabaña ${cabanaName}`, `?cabana=${cabanaName}`);
+            // Sincronizar con historial del navegador
+            history.pushState({ view: 'detalle', cabana: cabanaName }, `Cabaña ${cabanaName}`);
             
             window.scrollTo({
                 top: 0,
@@ -612,12 +612,14 @@
             });
         }
 
-        function backToGrid() {
+        function closeCabana() {
             detailView.classList.remove('active');
             cabanasGrid.style.display = 'grid';
             
-            // Usar history.back() para navegación natural del navegador
-            history.back();
+            // Validar si hay historial para evitar bucles
+            if (window.history.length > 1) {
+                history.back();
+            }
             
             setTimeout(() => {
                 window.scrollTo({
@@ -628,13 +630,12 @@
         }
 
         // Escuchar evento popstate (gesto trackpad, botón atrás del navegador)
-        window.addEventListener('popstate', function(event) {
-            if (event.state && event.state.cabana) {
-                // Si venimos de una ficha de cabaña, volver al grid
-                detailView.classList.remove('active');
-                cabanasGrid.style.display = 'grid';
+        window.onpopstate = function(event) {
+            if (event.state && event.state.view === 'detalle') {
+                // Si venimos de una ficha de cabaña, cerrar la ficha
+                closeCabana();
             }
-        });
+        };
 
         document.addEventListener('DOMContentLoaded', function() {
             cabanaBtns.forEach((btn, index) => {
