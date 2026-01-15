@@ -324,6 +324,33 @@
             margin: 0 auto;
         }
 
+        .directions-btn {
+            background: rgba(47, 125, 78, 0.95);
+            color: var(--text-light);
+            border: 1px solid rgba(246, 242, 234, 0.18);
+            padding: 14px 18px;
+            border-radius: 14px;
+            font-size: 1.05rem;
+            font-weight: 800;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            text-decoration: none;
+            box-shadow: var(--shadow);
+            width: 100%;
+            margin-bottom: 18px;
+            letter-spacing: 0.3px;
+        }
+
+        .directions-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-hover);
+            background: rgba(47, 125, 78, 1);
+        }
+
         .back-btn:hover {
             background: rgba(176, 137, 91, 1);
             transform: translateY(-2px);
@@ -452,12 +479,12 @@
         <main>
             <section class="cabanas-grid" id="cabanasGrid">
                 <button class="cabana-btn" data-cabana="A22">A22</button>
-                <button class="cabana-btn" data-cabana="CT21">CT21</button>
-                <button class="cabana-btn" data-cabana="CT19A">CT19A</button>
                 <button class="cabana-btn" data-cabana="CA12">CA12</button>
                 <button class="cabana-btn" data-cabana="B48">B48</button>
-                <button class="cabana-btn" data-cabana="CASA DEL ARBOL">CASA DEL ARBOL</button>
                 <button class="cabana-btn" data-cabana="B56">B56</button>
+                <button class="cabana-btn" data-cabana="CT21">CT21</button>
+                <button class="cabana-btn" data-cabana="CT22A">CT22A</button>
+                <button class="cabana-btn" data-cabana="Casa del Árbol">Casa del Árbol</button>
             </section>
 
             <section class="detail-view" id="detailView">
@@ -466,6 +493,10 @@
                 <div class="location-media">
                     <img id="locationImage" class="location-image" src="" alt="Ubicación de la cabaña" />
                 </div>
+
+                <a id="directionsBtn" class="directions-btn" href="#" target="_blank" rel="noopener">
+                    ¿Cómo llegar?
+                </a>
 
                 <div class="specs" aria-label="Ficha técnica">
                     <div class="spec">
@@ -479,7 +510,7 @@
                 </div>
 
                 <div class="rule-alert" role="note">
-                    La basura debe tirarse obligatoriamente en el cesto de afuera. Evite multas de $20.000.
+                    IMPORTANTE: La basura debe tirarse en el cesto exterior. Evite multas de $20.000.
                 </div>
 
                 <div class="instructions">
@@ -510,18 +541,19 @@
         const detailView = document.getElementById('detailView');
         const cabanaTitle = document.getElementById('cabanaTitle');
         const locationImage = document.getElementById('locationImage');
+        const directionsBtn = document.getElementById('directionsBtn');
         const specCapacity = document.getElementById('specCapacity');
         const specRooms = document.getElementById('specRooms');
         const cabanaBtns = document.querySelectorAll('.cabana-btn');
 
         const CABANA_DATA = {
-            'A22': { capacity: '4 personas', rooms: '2 dormitorios' },
-            'CT21': { capacity: '4 personas', rooms: '2 dormitorios' },
-            'CT19A': { capacity: '4 personas', rooms: '2 dormitorios' },
-            'CA12': { capacity: '4 personas', rooms: '2 dormitorios' },
-            'B48': { capacity: '4 personas', rooms: '2 dormitorios' },
-            'CASA DEL ARBOL': { capacity: '4 personas', rooms: '2 dormitorios' },
-            'B56': { capacity: '4 personas', rooms: '2 dormitorios' }
+            'A22': { capacity: 'A completar', rooms: 'A completar', mapsUrl: 'https://maps.app.goo.gl/UcepXrAt5ijMahdL8' },
+            'Casa del Árbol': { capacity: 'A completar', rooms: 'A completar', mapsUrl: 'https://maps.app.goo.gl/8y1WLujMqPZsrYUFA' },
+            'CA12': { capacity: 'A completar', rooms: 'A completar', mapsUrl: 'https://maps.app.goo.gl/jRtpMmVHKVZXFxHS6' },
+            'B48': { capacity: 'A completar', rooms: 'A completar', mapsUrl: 'https://maps.app.goo.gl/za3wj2brHbsE6QCXA' },
+            'B56': { capacity: 'A completar', rooms: 'A completar', mapsUrl: 'https://maps.app.goo.gl/L9ZpRCGjDM3fofSYA' },
+            'CT21': { capacity: 'A completar', rooms: 'A completar', mapsUrl: 'https://maps.app.goo.gl/eQNdxXhjkHzky4KW6' },
+            'CT22A': { capacity: 'A completar', rooms: 'A completar', mapsUrl: 'https://maps.app.goo.gl/vBr6snBET9CjW8hU8' }
         };
 
         function makeOfflineLocationPlaceholder(label) {
@@ -568,11 +600,13 @@
         function showCabanaDetail(cabanaName) {
             cabanaTitle.textContent = `Cabaña ${cabanaName}`;
 
-            const data = CABANA_DATA[cabanaName] || { capacity: '4 personas', rooms: '2 dormitorios' };
+            const data = CABANA_DATA[cabanaName] || { capacity: 'A completar', rooms: 'A completar', mapsUrl: '#' };
             specCapacity.textContent = data.capacity;
             specRooms.textContent = data.rooms;
             locationImage.src = makeOfflineLocationPlaceholder(cabanaName);
             locationImage.alt = `Ubicación de ${cabanaName}`;
+
+            directionsBtn.href = data.mapsUrl;
             
             cabanasGrid.style.display = 'none';
             detailView.classList.add('active');
