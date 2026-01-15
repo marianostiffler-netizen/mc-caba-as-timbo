@@ -501,7 +501,7 @@
                 <h2 class="cabana-title" id="cabanaTitle">Cabaña A22</h2>
 
                 <div id="mapPreview" class="location-media" aria-label="Vista previa de ubicación">
-                    <iframe id="mapIframe" class="map-iframe" src="" allowfullscreen loading="lazy"></iframe>
+                    <iframe class="map-iframe" src="https://maps.google.com/maps?q=-32.554374,-60.847760&hl=es&z=14&output=embed" allowfullscreen loading="lazy"></iframe>
                 </div>
 
                 <div class="specs" aria-label="Ficha técnica">
@@ -550,21 +550,19 @@
         const cabanasGrid = document.getElementById('cabanasGrid');
         const detailView = document.getElementById('detailView');
         const cabanaTitle = document.getElementById('cabanaTitle');
-        const mapPreview = document.getElementById('mapPreview');
-        const mapIframe = document.getElementById('mapIframe');
         const directionsBtn = document.getElementById('directionsBtn');
         const specCapacity = document.getElementById('specCapacity');
         const specRooms = document.getElementById('specRooms');
         const cabanaBtns = document.querySelectorAll('.cabana-btn');
 
         const CABANA_DATA = {
-            'A22': { capacity: 'A completar', rooms: 'A completar', mapsUrl: 'https://maps.app.goo.gl/UcepXrAt5ijMahdL8', placeQuery: 'Timbó, Santa Fe, Argentina' },
-            'Casa del Árbol': { capacity: 'A completar', rooms: 'A completar', mapsUrl: 'https://maps.app.goo.gl/8y1WLujMqPZsrYUFA', previewImage: '' },
-            'CA12': { capacity: 'A completar', rooms: 'A completar', mapsUrl: 'https://maps.app.goo.gl/jRtpMmVHKVZXFxHS6', previewImage: '' },
-            'B48': { capacity: 'A completar', rooms: 'A completar', mapsUrl: 'https://maps.app.goo.gl/za3wj2brHbsE6QCXA', previewImage: '' },
-            'B56': { capacity: 'A completar', rooms: 'A completar', mapsUrl: 'https://maps.app.goo.gl/L9ZpRCGjDM3fofSYA', previewImage: '' },
-            'CT21': { capacity: 'A completar', rooms: 'A completar', mapsUrl: 'https://maps.app.goo.gl/eQNdxXhjkHzky4KW6', previewImage: '' },
-            'CT22A': { capacity: 'A completar', rooms: 'A completar', mapsUrl: 'https://maps.app.goo.gl/vBr6snBET9CjW8hU8', previewImage: '' }
+            'A22': { capacity: 'A completar', rooms: 'A completar', mapsUrl: 'https://maps.app.goo.gl/UcepXrAt5ijMahdL8' },
+            'Casa del Árbol': { capacity: 'A completar', rooms: 'A completar', mapsUrl: 'https://maps.app.goo.gl/8y1WLujMqPZsrYUFA' },
+            'CA12': { capacity: 'A completar', rooms: 'A completar', mapsUrl: 'https://maps.app.goo.gl/jRtpMmVHKVZXFxHS6' },
+            'B48': { capacity: 'A completar', rooms: 'A completar', mapsUrl: 'https://maps.app.goo.gl/za3wj2brHbsE6QCXA' },
+            'B56': { capacity: 'A completar', rooms: 'A completar', mapsUrl: 'https://maps.app.goo.gl/L9ZpRCGjDM3fofSYA' },
+            'CT21': { capacity: 'A completar', rooms: 'A completar', mapsUrl: 'https://maps.app.goo.gl/eQNdxXhjkHzky4KW6' },
+            'CT22A': { capacity: 'A completar', rooms: 'A completar', mapsUrl: 'https://maps.app.goo.gl/vBr6snBET9CjW8hU8' }
         };
 
         cabanaBtns.forEach(btn => {
@@ -580,12 +578,6 @@
             const data = CABANA_DATA[cabanaName] || { capacity: 'A completar', rooms: 'A completar', mapsUrl: '#' };
             specCapacity.textContent = data.capacity;
             specRooms.textContent = data.rooms;
-
-            if (data.placeQuery) {
-                mapIframe.src = `https://www.google.com/maps/embed/v1/place?key=AIzaSyBFw0Qbyq0zO0N6ERf3k9tGlbgNtFDNLVM&zoom=16&maptype=roadmap&q=${encodeURIComponent(data.placeQuery)}`;
-            } else {
-                mapIframe.src = '';
-            }
 
             directionsBtn.href = data.mapsUrl;
             
