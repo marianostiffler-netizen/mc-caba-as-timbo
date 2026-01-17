@@ -618,9 +618,9 @@
                 specCapacity.textContent = 'A completar';
                 specRooms.textContent = 'A completar';
                 
-                // Usar iframe específico para Pileta 2 con pin rojo forzado
+                // Usar iframe simple para Pileta 2 con pin rojo garantizado
                 const mapContainer = document.getElementById('mapPreview');
-                mapContainer.innerHTML = '<iframe src="https://maps.google.com/?cid=12748658744890147227&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQ0" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>';
+                mapContainer.innerHTML = "<iframe width='100%' height='450' style='border:0;' allowfullscreen='' loading='lazy' referrerpolicy='no-referrer-when-downgrade' src='https://maps.google.com/maps?q=-32.553931,-60.849187&z=18&output=embed'></iframe>";
                 directionsBtn.href = 'https://maps.app.goo.gl/347MUhXouPjPGPNv6';
                 
                 // Reemplazar sección de instrucciones con descripción de Pileta 2
