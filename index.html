@@ -507,6 +507,7 @@
                 <button class="cabana-btn" data-cabana="CT19A">CT19A</button>
                 <button class="cabana-btn" data-cabana="Casa del Árbol">Casa del Árbol</button>
                 <button class="cabana-btn" data-cabana="Pileta">Pileta</button>
+                <button class="cabana-btn" data-cabana="Pileta2">🏊 Pileta 2</button>
                 <button class="cabana-btn" data-cabana="Almacen">🛒 Almacén & Proveeduría</button>
             </section>
 
@@ -572,6 +573,13 @@
             'CT21': { capacity: '8 personas', rooms: '3 habitaciones', mapsUrl: 'https://maps.app.goo.gl/eQNdxXhjkHzky4KW6', coords: '-32.546339,-60.843692' },
             'CT22A': { capacity: '4 personas', rooms: '2 habitaciones', mapsUrl: 'https://maps.app.goo.gl/vBr6snBET9CjW8hU8', coords: '-32.546215,-60.843893' },
             'Pileta': { capacity: 'A completar', rooms: 'A completar', mapsUrl: 'https://maps.app.goo.gl/wq8vDzVLTnJA4uN97', coords: '-32.557148,-60.850859' },
+            'Pileta2': { 
+                capacity: 'A completar', 
+                rooms: 'A completar', 
+                mapsUrl: 'https://maps.app.goo.gl/347MUhXouPjPGPNv6', 
+                coords: '-32.533696,-60.850432',
+                description: 'Segunda piscina del complejo con zona de descanso y amenities.'
+            },
             'Almacen': { 
                 capacity: 'Servicio completo', 
                 rooms: 'Tienda y proveeduría', 
@@ -604,6 +612,22 @@
                 instructionsDiv.innerHTML = `
                     <h3>Almacén & Proveeduría</h3>
                     <p>Encontrá todo lo necesario para tu estadía sin salir del complejo: carbón, hielo, comestibles, bebidas y más.</p>
+                `;
+            } else if (cabanaName === 'Pileta2') {
+                cabanaTitle.textContent = 'Pileta 2';
+                specCapacity.textContent = 'A completar';
+                specRooms.textContent = 'A completar';
+                
+                // Usar iframe específico para Pileta 2 con pin rojo
+                const mapContainer = document.getElementById('mapPreview');
+                mapContainer.innerHTML = '<iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d840.9293333283965!2d-60.85043160559233!3d-32.5336956544502!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1ses-419!2sar!4v1768656946733!5m2!1ses-419!2sar" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>';
+                directionsBtn.href = 'https://maps.app.goo.gl/347MUhXouPjPGPNv6';
+                
+                // Reemplazar sección de instrucciones con descripción de Pileta 2
+                const instructionsDiv = document.querySelector('.instructions');
+                instructionsDiv.innerHTML = `
+                    <h3>Pileta 2</h3>
+                    <p>Segunda piscina del complejo con zona de descanso y amenities.</p>
                 `;
             } else {
                 cabanaTitle.textContent = `Cabaña ${cabanaName}`;
