@@ -508,6 +508,7 @@
                 <button class="cabana-btn" data-cabana="Casa del Árbol">Casa del Árbol</button>
                 <button class="cabana-btn" data-cabana="Pileta">Pileta</button>
                 <button class="cabana-btn" data-cabana="Pileta2">🏊 Pileta 2 (Atrás)</button>
+                <button class="cabana-btn" data-cabana="D27">🏠 D27</button>
                 <button class="cabana-btn" data-cabana="Almacen">🛒 Almacén & Proveeduría</button>
             </section>
 
@@ -580,6 +581,13 @@
                 coords: '-32.533696,-60.850432',
                 description: 'Segunda piscina del complejo con zona de descanso y amenities.'
             },
+            'D27': { 
+                capacity: '4 personas', 
+                rooms: '1 habitación', 
+                mapsUrl: 'https://maps.app.goo.gl/RPAaqbgdaVsjNNAK8', 
+                coords: '-32.552006,-60.844252',
+                description: 'Cabaña con pileta privada y amenities exclusivos.'
+            },
             'Almacen': { 
                 capacity: 'Servicio completo', 
                 rooms: 'Tienda y proveeduría', 
@@ -612,6 +620,22 @@
                 instructionsDiv.innerHTML = `
                     <h3>Almacén & Proveeduría</h3>
                     <p>Encontrá todo lo necesario para tu estadía sin salir del complejo: carbón, hielo, comestibles, bebidas y más.</p>
+                `;
+            } else if (cabanaName === 'D27') {
+                cabanaTitle.textContent = 'D27';
+                specCapacity.textContent = '4 personas';
+                specRooms.textContent = '1 habitación';
+                
+                // Usar iframe específico para D27 con pin rojo
+                const mapContainer = document.getElementById('mapPreview');
+                mapContainer.innerHTML = '<iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d420.3789326016114!2d-60.84425233776199!3d-32.55200559625309!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1ses-419!2sar!4v1768659160931!5m2!1ses-419!2sar" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>';
+                directionsBtn.href = 'https://maps.app.goo.gl/RPAaqbgdaVsjNNAK8';
+                
+                // Reemplazar sección de instrucciones con descripción de D27
+                const instructionsDiv = document.querySelector('.instructions');
+                instructionsDiv.innerHTML = `
+                    <h3>D27</h3>
+                    <p>Cabaña con pileta privada y amenities exclusivos.</p>
                 `;
             } else if (cabanaName === 'Pileta2') {
                 cabanaTitle.textContent = 'Pileta 2';
