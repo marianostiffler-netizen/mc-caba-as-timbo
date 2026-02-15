@@ -667,10 +667,21 @@
                 const ruleAlert = document.querySelector('.rule-alert');
                 ruleAlert.style.display = 'none';
                 
-                // Cambiar botón de direcciones a botón de contacto
-                directionsBtn.textContent = 'Contactar';
-                directionsBtn.href = 'tel:3415442156';
-                directionsBtn.target = '_self';
+                // Restaurar botón de direcciones y agregar botón de contacto
+                directionsBtn.textContent = '¿Cómo llegar?';
+                directionsBtn.href = 'https://maps.app.goo.gl/8LWQcdy7mu814m36A';
+                directionsBtn.target = '_blank';
+                
+                // Crear botón de contacto
+                const contactBtn = document.createElement('a');
+                contactBtn.className = 'directions-btn';
+                contactBtn.href = 'tel:3415442156';
+                contactBtn.target = '_self';
+                contactBtn.textContent = 'Contactar: 3415442156';
+                contactBtn.style.marginTop = '10px';
+                
+                // Insertar botón de contacto después del botón de direcciones
+                directionsBtn.parentNode.insertBefore(contactBtn, directionsBtn.nextSibling);
                 
                 // Reemplazar sección de instrucciones con descripción de Timbo Sport
                 const instructionsDiv = document.querySelector('.instructions');
