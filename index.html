@@ -507,6 +507,7 @@
 
         <main>
             <section class="cabanas-grid" id="cabanasGrid">
+                <button class="cabana-btn" data-cabana="EntradaSalida">🚪 Entrada/salida Campo Timbo Country Club</button>
                 <button class="cabana-btn" data-cabana="A22">🏠 A22</button>
                 <button class="cabana-btn" data-cabana="B48">🏠 B48</button>
                 <button class="cabana-btn" data-cabana="B56">🏠 B56</button>
@@ -575,6 +576,13 @@
         const cabanaBtns = document.querySelectorAll('.cabana-btn');
 
         const CABANA_DATA = {
+            'EntradaSalida': { 
+                capacity: 'Acceso principal', 
+                rooms: 'Campo deportivo', 
+                mapsUrl: 'https://maps.app.goo.gl/U4N9LMjFW2QGRFUq5', 
+                coords: '-32.555003,-60.853376',
+                description: 'Entrada y salida principal del Campo Timbo Country Club. Indicaciones prácticas para llegar: Usar Google Maps para navegación precisa. La gente suele entrar por atrás del complejo, seguir las indicaciones del GPS hasta la entrada principal.'
+            },
             'A22': { capacity: '8 personas', rooms: '3 habitaciones', mapsUrl: 'https://maps.app.goo.gl/UcepXrAt5ijMahdL8', coords: '-32.554256,-60.847626' },
             'Casa del Árbol': { capacity: '2 personas', rooms: '1 habitación', mapsUrl: 'https://maps.app.goo.gl/8y1WLujMqPZsrYUFA', coords: '-32.551894,-60.846620' },
             'CA12': { capacity: '6 personas', rooms: '2 habitaciones', mapsUrl: 'https://maps.app.goo.gl/jRtpMmVHKVZXFxHS6', coords: '-32.548529,-60.842225' },
@@ -621,7 +629,30 @@
         });
 
         function showCabanaDetail(cabanaName) {
-            if (cabanaName === 'Almacen') {
+            if (cabanaName === 'EntradaSalida') {
+                cabanaTitle.textContent = 'Entrada/salida Campo Timbo Country Club';
+                specCapacity.textContent = 'Acceso principal';
+                specRooms.textContent = 'Campo deportivo';
+                
+                // Usar iframe específico para entrada con vista previa
+                const mapContainer = document.getElementById('mapPreview');
+                mapContainer.innerHTML = '<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3362.9191407920766!2d-60.853376499999996!3d-32.5550032!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95b66ea7994c6d53%3A0x13eb9ec9e7dd518!2sEnt%20a%20Campo%20Timb%C3%B3%2C%20Santa%20Fe!5e0!3m2!1ses-419!2sar!4v1771165498571!5m2!1ses-419!2sar" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>';
+                directionsBtn.href = 'https://maps.app.goo.gl/U4N9LMjFW2QGRFUq5';
+                
+                // Ocultar elementos innecesarios para entrada
+                const ruleAlert = document.querySelector('.rule-alert');
+                ruleAlert.style.display = 'none';
+                
+                // Reemplazar sección de instrucciones con descripción de entrada
+                const instructionsDiv = document.querySelector('.instructions');
+                instructionsDiv.innerHTML = `
+                    <h3>Entrada/salida Campo Timbo Country Club</h3>
+                    <p>Entrada y salida principal del Campo Timbo Country Club.</p>
+                    <p><strong>Indicaciones prácticas para llegar:</strong></p>
+                    <p>• Usar Google Maps para navegación precisa</p>
+                    <p>• La gente suele entrar por atrás del complejo, seguir las indicaciones del GPS hasta la entrada principal</p>
+                `;
+            } else if (cabanaName === 'Almacen') {
                 cabanaTitle.textContent = 'Almacén & Proveeduría';
                 specCapacity.textContent = 'Servicio completo';
                 specRooms.textContent = 'Tienda y proveeduría';
