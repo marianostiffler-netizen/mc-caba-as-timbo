@@ -553,7 +553,7 @@
                     <p>Nuestras cabañas son el refugio perfecto para desconectar, recargar energías y crear recuerdos que durarán toda la vida. Vení y descubrí por qué somos la opción preferida de quienes buscan tranquilidad sin sacrificar el confort.</p>
                 </div>
 
-                <button class="back-btn" onclick="closeCabana()">Volver al inicio</button>
+                <button class="back-btn" onclick="closeDetails()">Volver al inicio</button>
             </section>
         </main>
     </div>
@@ -820,30 +820,26 @@
             });
         }
 
-        function closeCabana() {
+        function closeDetails() {
             detailView.classList.remove('active');
             cabanasGrid.style.display = 'grid';
             
-            // Validar si hay historial para evitar bucles
-            if (window.history.length > 1) {
-                history.back();
-            }
+            // Limpiar contenido del mapa para evitar caché
+            const mapContainer = document.getElementById('mapPreview');
+            mapContainer.innerHTML = '';
             
-            setTimeout(() => {
-                window.scrollTo({
-                    top: 0,
-                    behavior: 'smooth'
-                });
-            }, 100);
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
         }
 
-        // Escuchar evento popstate (gesto trackpad, botón atrás del navegador)
-        window.onpopstate = function(event) {
+        // Escuchar evento popstate (botón atrás del navegador/celular)
+        window.addEventListener('popstate', function(event) {
             if (event.state && event.state.view === 'detalle') {
-                // Si venimos de una ficha de cabaña, cerrar la ficha
-                closeCabana();
+                closeDetails();
             }
-        };
+        });
 
         document.addEventListener('DOMContentLoaded', function() {
             cabanaBtns.forEach((btn, index) => {
