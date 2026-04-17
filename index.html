@@ -627,6 +627,10 @@
         });
 
         function showCabanaDetail(cabanaName) {
+            // Limpiar contenedor del mapa para evitar caché
+            const mapContainer = document.getElementById('mapPreview');
+            mapContainer.innerHTML = '';
+
             if (cabanaName === 'EntradaSalida') {
                 cabanaTitle.textContent = 'Entrada/salida Campo Timbo Country Club';
                 specCapacity.textContent = 'Acceso principal';
@@ -635,10 +639,16 @@
                 // Ocultar recuadro de specs solo para EntradaSalida
                 const specsDiv = document.querySelector('.specs');
                 specsDiv.style.display = 'none';
-                
+
                 // Usar iframe específico para entrada con vista previa
-                const mapContainer = document.getElementById('mapPreview');
-                mapContainer.innerHTML = '<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3362.9191407920766!2d-60.853376499999996!3d-32.5550032!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95b66ea7994c6d53%3A0x13eb9ec9e7dd518!2sEnt%20a%20Campo%20Timb%C3%B3%2C%20Santa%20Fe!5e0!3m2!1ses-419!2sar!4v1771165498571!5m2!1ses-419!2sar" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>';
+                const newIframe = document.createElement('iframe');
+                newIframe.src = 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3362.9191407920766!2d-60.853376499999996!3d-32.5550032!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95b66ea7994c6d53%3A0x13eb9ec9e7dd518!2sEnt%20a%20Campo%20Timb%C3%B3%2C%20Santa%20Fe!5e0!3m2!1ses-419!2sar!4v1771165498571!5m2!1ses-419!2sar';
+                newIframe.width = '100%';
+                newIframe.height = '450';
+                newIframe.style.border = '0';
+                newIframe.allowFullscreen = '';
+                newIframe.loading = 'lazy';
+                mapContainer.appendChild(newIframe);
                 directionsBtn.href = 'https://maps.app.goo.gl/U4N9LMjFW2QGRFUq5';
                 
                 // Ocultar elementos innecesarios para entrada
@@ -675,10 +685,16 @@
                 // Mostrar recuadro de specs para Almacen
                 const specsDiv = document.querySelector('.specs');
                 specsDiv.style.display = 'flex';
-                
+
                 // Usar mapa del centro del complejo para almacén con iframe oficial correcto
-                const mapContainer = document.getElementById('mapPreview');
-                mapContainer.innerHTML = '<iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d840.7274254239774!2d-60.8506864!3d-32.5552551!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95b66f25aa9f7945%3A0x369c753ec9d9ec2d!2zT2pvcyBhbCBDYXJjYXJhw7HDoQ!5e0!3m2!1ses-419!2sar!4v1768592610230!5m2!1ses-419!2sar" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>';
+                const newIframe = document.createElement('iframe');
+                newIframe.src = 'https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d840.7274254239774!2d-60.8506864!3d-32.5552551!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95b66f25aa9f7945%3A0x369c753ec9d9ec2d!2zT2pvcyBhbCBDYXJjYXJhw7HDoQ!5e0!3m2!1ses-419!2sar!4v1768592610230!5m2!1ses-419!2sar';
+                newIframe.width = '100%';
+                newIframe.height = '450';
+                newIframe.style.border = '0';
+                newIframe.allowFullscreen = '';
+                newIframe.loading = 'lazy';
+                mapContainer.appendChild(newIframe);
                 directionsBtn.href = 'https://maps.app.goo.gl/LGoJEWPDzdznwAPDA';
                 
                 // Reemplazar sección de instrucciones con descripción del almacén
@@ -695,10 +711,16 @@
                 // Mostrar recuadro de specs para D27
                 const specsDiv = document.querySelector('.specs');
                 specsDiv.style.display = 'flex';
-                
+
                 // Usar iframe específico para D27 con pin rojo
-                const mapContainer = document.getElementById('mapPreview');
-                mapContainer.innerHTML = '<iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d420.3789326016114!2d-60.84425233776199!3d-32.55200559625309!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1ses-419!2sar!4v1768659160931!5m2!1ses-419!2sar" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>';
+                const newIframe = document.createElement('iframe');
+                newIframe.src = 'https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d420.3789326016114!2d-60.84425233776199!3d-32.55200559625309!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1ses-419!2sar!4v1768659160931!5m2!1ses-419!2sar';
+                newIframe.width = '100%';
+                newIframe.height = '450';
+                newIframe.style.border = '0';
+                newIframe.allowFullscreen = '';
+                newIframe.loading = 'lazy';
+                mapContainer.appendChild(newIframe);
                 directionsBtn.href = 'https://maps.app.goo.gl/RPAaqbgdaVsjNNAK8';
                 
                 // Reemplazar sección de instrucciones con descripción de D27
@@ -715,10 +737,16 @@
                 // Mostrar recuadro de specs para Timbo Sport
                 const specsDiv = document.querySelector('.specs');
                 specsDiv.style.display = 'flex';
-                
+
                 // Usar iframe específico para Timbo Sport con pin rojo
-                const mapContainer = document.getElementById('mapPreview');
-                mapContainer.innerHTML = '<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d363.59708767136163!2d-60.84502272164356!3d-32.55843584513417!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95b66f428f64cd89%3A0xc9039bb93968a236!2sTimb%C3%B3%20Sports!5e1!3m2!1ses-419!2sar!4v1771115535903!5m2!1ses-419!2sar" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>';
+                const newIframe = document.createElement('iframe');
+                newIframe.src = 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d363.59708767136163!2d-60.84502272164356!3d-32.55843584513417!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95b66f428f64cd89%3A0xc9039bb93968a236!2sTimb%C3%B3%20Sports!5e1!3m2!1ses-419!2sar!4v1771115535903!5m2!1ses-419!2sar';
+                newIframe.width = '100%';
+                newIframe.height = '450';
+                newIframe.style.border = '0';
+                newIframe.allowFullscreen = '';
+                newIframe.loading = 'lazy';
+                mapContainer.appendChild(newIframe);
                 directionsBtn.href = 'https://maps.app.goo.gl/8LWQcdy7mu814m36A';
                 
                 // Ocultar alerta de basura para Timbo Sport
@@ -756,10 +784,16 @@
                 // Mostrar recuadro de specs para Pileta 2
                 const specsDiv = document.querySelector('.specs');
                 specsDiv.style.display = 'flex';
-                
+
                 // Usar iframe exacto para vista previa de Pileta 2 con pin rojo
-                const mapContainer = document.getElementById('mapPreview');
-                mapContainer.innerHTML = '<iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d840.9293333283965!2d-60.85043160559233!3d-32.5336956544502!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1ses-419!2sar!4v1768657551006!5m2!1ses-419!2sar" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>';
+                const newIframe = document.createElement('iframe');
+                newIframe.src = 'https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d840.9293333283965!2d-60.85043160559233!3d-32.5336956544502!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1ses-419!2sar!4v1768657551006!5m2!1ses-419%2sar';
+                newIframe.width = '100%';
+                newIframe.height = '450';
+                newIframe.style.border = '0';
+                newIframe.allowFullscreen = '';
+                newIframe.loading = 'lazy';
+                mapContainer.appendChild(newIframe);
                 directionsBtn.href = 'https://maps.app.goo.gl/347MUhXouPjPGPNv6';
                 
                 // Reemplazar sección de instrucciones con descripción de Pileta 2
@@ -796,7 +830,14 @@
 
                 if (data.coords) {
                     // Usar coordenadas exactas extraídas de los links que sí funcionan
-                    mapIframe.src = `https://maps.google.com/maps?q=${data.coords}&z=18&output=embed`;
+                    const newIframe = document.createElement('iframe');
+                    newIframe.src = `https://maps.google.com/maps?q=${data.coords}&z=18&output=embed`;
+                    newIframe.width = '100%';
+                    newIframe.height = '450';
+                    newIframe.style.border = '0';
+                    newIframe.allowFullscreen = '';
+                    newIframe.loading = 'lazy';
+                    mapContainer.appendChild(newIframe);
                 }
 
                 // Restaurar instrucciones por defecto
